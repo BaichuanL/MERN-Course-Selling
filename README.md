@@ -11,4 +11,3 @@ cd client
 
 npm start
 
-## Function Introduction
