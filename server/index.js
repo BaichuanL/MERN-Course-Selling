@@ -13,7 +13,7 @@ const cors = require("cors");
 mongoose
   .connect("mongodb://localhost:27017/mernDB")
   .then(() => {
-    console.log("連結到mongodb...");
+    console.log("Connect to mongodb...");
   })
   .catch((e) => {
     console.log(e);
@@ -34,5 +34,5 @@ app.use(
 );
 
 app.listen(8080, () => {
-  console.log("後端伺服器聆聽在port 8080...");
+  console.log("Back-end server listens at port 8080...");
 });

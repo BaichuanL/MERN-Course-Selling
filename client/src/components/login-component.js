@@ -19,7 +19,7 @@ const LoginComponent = ({ currentUser, setCurrentUser }) => {
     try {
       let response = await AuthService.login(email, password);
       localStorage.setItem("user", JSON.stringify(response.data));
-      window.alert("登入成功。您現在將被重新導向到個人資料頁面。");
+      window.alert("Login successful. You will now be redirected to your profile page.");
       setCurrentUser(AuthService.getCurrentUser());
       nagivate("/profile");
     } catch (e) {
@@ -32,7 +32,7 @@ const LoginComponent = ({ currentUser, setCurrentUser }) => {
       <div>
         {message && <div className="alert alert-danger">{message}</div>}
         <div className="form-group">
-          <label htmlFor="username">電子信箱：</label>
+          <label htmlFor="username">Email:</label>
           <input
             onChange={handleEmail}
             type="text"
@@ -42,7 +42,7 @@ const LoginComponent = ({ currentUser, setCurrentUser }) => {
         </div>
         <br />
         <div className="form-group">
-          <label htmlFor="password">密碼：</label>
+          <label htmlFor="password">Password:</label>
           <input
             onChange={handlePassword}
             type="password"
@@ -53,7 +53,7 @@ const LoginComponent = ({ currentUser, setCurrentUser }) => {
         <br />
         <div className="form-group">
           <button onClick={handleLogin} className="btn btn-primary btn-block">
-            <span>登入系統</span>
+            <span>Login System</span>
           </button>
         </div>
       </div>

@@ -37,23 +37,23 @@ const CourseComponent = ({ currentUser, setCurrentUser }) => {
     <div style={{ padding: "3rem" }}>
       {!currentUser && (
         <div>
-          <p>您必須先登入才能看到課程。</p>
+          <p>You must be logged in to see the course.</p>
           <button
             className="btn btn-primary btn-lg"
             onClick={handleTakeToLogin}
           >
-            回到登入頁面
+            Back to login page
           </button>
         </div>
       )}
       {currentUser && currentUser.user.role == "instructor" && (
         <div>
-          <h1>歡迎來到講師的課程頁面。</h1>
+          <h1>Welcome to the instructor's course page.</h1>
         </div>
       )}
       {currentUser && currentUser.user.role == "student" && (
         <div>
-          <h1>歡迎來到學生的課程頁面。</h1>
+          <h1>Welcome to the student's course page.</h1>
         </div>
       )}
       {currentUser && courseData && courseData.length != 0 && (
@@ -62,15 +62,15 @@ const CourseComponent = ({ currentUser, setCurrentUser }) => {
             return (
               <div className="card" style={{ width: "18rem", margin: "1rem" }}>
                 <div className="card-body">
-                  <h5 className="card-title">課程名稱:{course.title}</h5>
+                  <h5 className="card-title">Course Title: {course.title}</h5>
                   <p style={{ margin: "0.5rem 0rem" }} className="card-text">
                     {course.description}
                   </p>
                   <p style={{ margin: "0.5rem 0rem" }}>
-                    學生人數: {course.students.length}
+                    Student Number: {course.students.length}
                   </p>
                   <p style={{ margin: "0.5rem 0rem" }}>
-                    課程價格: {course.price}
+                    Course Price: {course.price}
                   </p>
                 </div>
               </div>

@@ -24,7 +24,7 @@ const PostCourseComponent = (props) => {
   const postCourse = () => {
     CourseService.post(title, description, price)
       .then(() => {
-        window.alert("新課程已創建成功");
+        window.alert("The new course has been created successfully");
         navigate("/course");
       })
       .catch((error) => {
@@ -37,23 +37,23 @@ const PostCourseComponent = (props) => {
     <div style={{ padding: "3rem" }}>
       {!currentUser && (
         <div>
-          <p>在發布新課程之前，您必須先登錄。</p>
+          <p>You must be logged in before Posting a new course.</p>
           <button
             className="btn btn-primary btn-lg"
             onClick={handleTakeToLogin}
           >
-            帶我進入登錄頁面。
+            Take me to the login page.
           </button>
         </div>
       )}
       {currentUser && currentUser.user.role !== "instructor" && (
         <div>
-          <p>只有講師可以發布新課程。</p>
+          <p>Only instructors can post new courses.</p>
         </div>
       )}
       {currentUser && currentUser.user.role == "instructor" && (
         <div className="form-group">
-          <label for="exampleforTitle">課程標題：</label>
+          <label for="exampleforTitle">Course Title:</label>
           <input
             name="title"
             type="text"
@@ -62,7 +62,7 @@ const PostCourseComponent = (props) => {
             onChange={handleChangeTitle}
           />
           <br />
-          <label for="exampleforContent">內容：</label>
+          <label for="exampleforContent">Content:</label>
           <textarea
             className="form-control"
             id="exampleforContent"
@@ -71,7 +71,7 @@ const PostCourseComponent = (props) => {
             onChange={handleChangeDesciption}
           />
           <br />
-          <label for="exampleforPrice">價格：</label>
+          <label for="exampleforPrice">Price:</label>
           <input
             name="price"
             type="number"
@@ -81,7 +81,7 @@ const PostCourseComponent = (props) => {
           />
           <br />
           <button className="btn btn-primary" onClick={postCourse}>
-            交出表單
+            Submit
           </button>
           <br />
           <br />

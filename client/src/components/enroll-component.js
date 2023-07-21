@@ -27,7 +27,7 @@ const EnrollComponent = ({ currentUser, setCurrentUser }) => {
   const handleEnroll = (e) => {
     CourseService.enroll(e.target.id)
       .then(() => {
-        window.alert("課程註冊成功!! 重新導向到課程頁面。");
+        window.alert("Course registration successful!! Redirect to the course page.");
         navigate("/course");
       })
       .catch((e) => {
@@ -39,19 +39,19 @@ const EnrollComponent = ({ currentUser, setCurrentUser }) => {
     <div style={{ padding: "3rem" }}>
       {!currentUser && (
         <div>
-          <p>您必須先登入才能開始註冊課程。</p>
+          <p>You must be logged in to start registering for the course.</p>
           <button
             className="btn btn-primary btn-lg"
             onClick={handleTakeToLogin}
           >
-            回到登入頁面
+            Back to login page
           </button>
         </div>
       )}
 
       {currentUser && currentUser.user.role == "instructor" && (
         <div>
-          <h1>只有學生才能夠註冊課程</h1>
+          <h1>Only students can register for courses</h1>
         </div>
       )}
       {currentUser && currentUser.user.role == "student" && (
@@ -62,30 +62,30 @@ const EnrollComponent = ({ currentUser, setCurrentUser }) => {
             onChange={handleChangeInput}
           />
           <button onClick={handleSearch} className="btn btn-primary">
-            搜尋課程
+            Search course
           </button>
         </div>
       )}
 
       {currentUser && searchResult && searchResult.length != 0 && (
         <div>
-          <p>這是我們從API返回的數據:</p>
+          <p>This is the data returned from the API:</p>
           {searchResult.map((course) => {
             return (
               <div key={course._id} className="card" style={{ width: "18rem" }}>
                 <div className="card-body">
-                  <h5 className="card-title">課程名稱:{course.title}</h5>
+                  <h5 className="card-title">Course Title: {course.title}</h5>
                   <p style={{ margin: "0.5rem 0rem" }} className="card-text">
                     {course.description}
                   </p>
                   <p style={{ margin: "0.5rem 0rem" }}>
-                    學生人數: {course.students.length}
+                    Student Number: {course.students.length}
                   </p>
                   <p style={{ margin: "0.5rem 0rem" }}>
-                    課程價格: {course.price}
+                    Course Price: {course.price}
                   </p>
                   <p style={{ margin: "0.5rem 0rem" }}>
-                    講師: {course.instructor.username}
+                    Instructor: {course.instructor.username}
                   </p>
 
                   <a
@@ -94,7 +94,7 @@ const EnrollComponent = ({ currentUser, setCurrentUser }) => {
                     className="card-text btn btn-primary"
                     onClick={handleEnroll}
                   >
-                    註冊課程
+                    register course
                   </a>
                 </div>
               </div>

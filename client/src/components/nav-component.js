@@ -5,7 +5,7 @@ import AuthService from "../services/auth.service";
 const NavComponent = ({ currentUser, setCurrentUser }) => {
   const handleLogout = () => {
     AuthService.logout(); // 清空local storage
-    window.alert("登出成功!現在您會被導向到首頁。");
+    window.alert("Logout success! You will now be directed to the home page.");
     setCurrentUser(null);
   };
 
@@ -18,42 +18,42 @@ const NavComponent = ({ currentUser, setCurrentUser }) => {
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <Link className="nav-link active" to="/">
-                    首頁
+                    Home Page
                   </Link>
                 </li>
 
                 {!currentUser && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/register">
-                      註冊會員
+                      Register
                     </Link>
                   </li>
                 )}
                 {!currentUser && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/login">
-                      會員登入
+                      login
                     </Link>
                   </li>
                 )}
                 {currentUser && (
                   <li className="nav-item">
                     <Link onClick={handleLogout} className="nav-link" to="/">
-                      登出
+                      Logout
                     </Link>
                   </li>
                 )}
                 {currentUser && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/profile">
-                      個人頁面
+                      Personal Page
                     </Link>
                   </li>
                 )}
                 {currentUser && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/course">
-                      課程頁面
+                      Course page
                     </Link>
                   </li>
                 )}
@@ -61,14 +61,14 @@ const NavComponent = ({ currentUser, setCurrentUser }) => {
                 {currentUser && currentUser.user.role == "instructor" && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/postCourse">
-                      新增課程
+                      New Course
                     </Link>
                   </li>
                 )}
                 {currentUser && currentUser.user.role == "student" && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/enroll">
-                      註冊課程
+                      Register Course
                     </Link>
                   </li>
                 )}

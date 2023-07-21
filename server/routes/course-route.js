@@ -3,7 +3,7 @@ const Course = require("../models").course;
 const courseValidation = require("../validation").courseValidation;
 
 router.use((req, res, next) => {
-  console.log("course route正在接受一個request...");
+  console.log("course route is accepting a request...");
   next();
 });
 
@@ -72,7 +72,7 @@ router.post("/", async (req, res) => {
   if (req.user.isStudent()) {
     return res
       .status(400)
-      .send("只有講師才能發佈新課程。若你已經是講師，請透過講師帳號登入。");
+      .send("Only instructors can publish new courses. If you are already a lecturer, please log in through your Lecturer account.");
   }
 
   let { title, description, price } = req.body;
@@ -84,9 +84,9 @@ router.post("/", async (req, res) => {
       instructor: req.user._id,
     });
     let savedCourse = await newCourse.save();
-    return res.send("新課程已經保存");
+    return res.send("The new course has been saved");
   } catch (e) {
-    return res.status(500).send("無法創建課程。。。");
+    return res.status(500).send("Unable to create a course...");
   }
 });
 
@@ -97,7 +97,7 @@ router.post("/enroll/:_id", async (req, res) => {
     let course = await Course.findOne({ _id }).exec();
     course.students.push(req.user._id);
     await course.save();
-    return res.send("註冊完成");
+    return res.send("registration complete");
   } catch (e) {
     return res.send(e);
   }
@@ -114,7 +114,7 @@ router.patch("/:_id", async (req, res) => {
   try {
     let courseFound = await Course.findOne({ _id });
     if (!courseFound) {
-      return res.status(400).send("找不到課程。無法更新課程內容。");
+      return res.status(400).send("Couldn't find the course. Unable to update course content.");
     }
 
     // 使用者必須是此課程講師，才能編輯課程
@@ -124,11 +124,11 @@ router.patch("/:_id", async (req, res) => {
         runValidators: true,
       });
       return res.send({
-        message: "課程已經被更新成功",
+        message: "The course has been updated successfully",
         updatedCourse,
       });
     } else {
-      return res.status(403).send("只有此課程的講師才能編輯課程。");
+      return res.status(403).send("Only the instructor of the course can edit the course.");
     }
   } catch (e) {
     return res.status(500).send(e);
@@ -141,15 +141,15 @@ router.delete("/:_id", async (req, res) => {
   try {
     let courseFound = await Course.findOne({ _id }).exec();
     if (!courseFound) {
-      return res.status(400).send("找不到課程。無法刪除課程。");
+      return res.status(400).send("Couldn't find the course. Unable to delete the course.");
     }
 
     // 使用者必須是此課程講師，才能刪除課程
     if (courseFound.instructor.equals(req.user._id)) {
       await Course.deleteOne({ _id }).exec();
-      return res.send("課程已被刪除。");
+      return res.send("The course has been deleted.");
     } else {
-      return res.status(403).send("只有此課程的講師才能刪除課程。");
+      return res.status(403).send("Only the instructor of the course can delete the course.");
     }
   } catch (e) {
     return res.status(500).send(e);

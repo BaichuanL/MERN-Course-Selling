@@ -26,7 +26,7 @@ const RegisterComponent = () => {
   const handleRegister = () => {
     AuthService.register(username, email, password, role)
       .then(() => {
-        window.alert("註冊成功。您現在將被導向到登入頁面");
+        window.alert("Registration succeeded. You will now be directed to the login page");
         navigate("/login");
       })
       .catch((e) => {
@@ -39,7 +39,7 @@ const RegisterComponent = () => {
       <div>
         {message && <div className="alert alert-danger">{message}</div>}
         <div>
-          <label htmlFor="username">用戶名稱:</label>
+          <label htmlFor="username">User Name:</label>
           <input
             onChange={handleUsername}
             type="text"
@@ -49,7 +49,7 @@ const RegisterComponent = () => {
         </div>
         <br />
         <div className="form-group">
-          <label htmlFor="email">電子信箱：</label>
+          <label htmlFor="email">Email:</label>
           <input
             onChange={handleEmail}
             type="text"
@@ -59,7 +59,7 @@ const RegisterComponent = () => {
         </div>
         <br />
         <div className="form-group">
-          <label htmlFor="password">密碼：</label>
+          <label htmlFor="password">Password:</label>
           <input
             onChange={handlePassword}
             type="password"
@@ -70,7 +70,7 @@ const RegisterComponent = () => {
         </div>
         <br />
         <div className="form-group">
-          <label htmlFor="password">身份：</label>
+          <label htmlFor="password">Role:</label>
           <input
             onChange={handleRole}
             type="text"
@@ -81,7 +81,7 @@ const RegisterComponent = () => {
         </div>
         <br />
         <button onClick={handleRegister} className="btn btn-primary">
-          <span>註冊會員</span>
+          <span>Register</span>
         </button>
       </div>
     </div>
