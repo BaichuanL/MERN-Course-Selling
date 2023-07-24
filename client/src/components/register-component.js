@@ -65,7 +65,7 @@ const RegisterComponent = () => {
             type="password"
             className="form-control"
             name="password"
-            placeholder="長度至少超過6個英文或數字"
+            placeholder="At least 6 characters or numbers in length"
           />
         </div>
         <br />
@@ -75,7 +75,7 @@ const RegisterComponent = () => {
             onChange={handleRole}
             type="text"
             className="form-control"
-            placeholder="只能填入student或是instructor這兩個選項其一"
+            placeholder="Only one option can be from student or instructor"
             name="role"
           />
         </div>
