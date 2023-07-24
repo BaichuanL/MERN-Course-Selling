@@ -1,5 +1,4 @@
-# MERN Course Selling
-## Launch the project
+# Launch the project
 ### Step 1 : start server
 cd server
 
